@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0f172a" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Calculadora Tasa">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon-180.png">
+  <title>Calculadora de Tasa Máxima</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <h1>Calculadora de Tasa Máxima de Compra</h1>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Parámetros</h2>
+
+      <label class="label" for="margen">Margen de ganancia sobre la venta (%)</label>
+      <input id="margen" type="number" inputmode="decimal" placeholder="Ej: 40" value="40" />
+
+      <label class="label" for="cobro">Tasa a la que COBRAS al cliente (Bs/USD)</label>
+      <input id="cobro" type="number" inputmode="decimal" placeholder="Ej: 149.44" value="149.44" />
+
+      <label class="label" for="operativo">Mínimo % de ganancia OPERATIVA sobre la venta</label>
+      <input id="operativo" type="number" inputmode="decimal" placeholder="Ej: 10" value="10" />
+
+      <button id="btnCalcular">Calcular tasa MÁXIMA de COMPRA</button>
+
+      <div id="resultado" class="result muted">—</div>
+    </section>
+
+    <section class="card">
+      <h2>Evaluar una TASA DE COMPRA</h2>
+
+      <label class="label" for="eval">Tasa de COMPRA a evaluar (Bs/USD)</label>
+      <input id="eval" type="number" inputmode="decimal" placeholder="Ej: 220" />
+
+      <button id="btnEvaluar">Evaluar</button>
+
+      <div id="evalSalida" class="result muted">—</div>
+    </section>
+
+    <footer class="footer">
+      <small>Aplicación diseñada por <strong>@jtalel</strong></small>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
