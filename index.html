@@ -15,15 +15,8 @@
 <body>
   <header class="app-header">
     <h1>Calculadora de Tasa Máxima de Compra</h1>
+    <a href="#ayuda" class="help-btn" aria-label="Ayuda">?</a>
   </header>
-
-  <section class="intro">
-    <p>Herramienta para determinar la tasa m&aacute;xima a la que puedes comprar divisas sin
-      afectar el margen operativo deseado. Introduce el margen bruto, la tasa a la que
-      cobras al cliente y el margen operativo m&iacute;nimo. Por ejemplo, con un margen del
-      40&#37; y una tasa de cobro de 149.44 Bs/USD, obtendr&aacute;s la tasa de compra m&aacute;xima
-      que mantiene tus objetivos.</p>
-  </section>
 
   <main class="container">
     <section class="card">
@@ -70,6 +63,17 @@
       <small>Aplicación diseñada por <strong>@jtalel</strong></small>
     </footer>
   </main>
+
+  <section id="ayuda" class="modal">
+    <div class="modal-content">
+      <a href="#" class="close" aria-label="Cerrar">×</a>
+      <p>Herramienta para determinar la tasa m&aacute;xima a la que puedes comprar divisas sin
+        afectar el margen operativo deseado. Introduce el margen bruto, la tasa a la que
+        cobras al cliente y el margen operativo m&iacute;nimo. Por ejemplo, con un margen del
+        40&#37; y una tasa de cobro de 149.44 Bs/USD, obtendr&aacute;s la tasa de compra m&aacute;xima
+        que mantiene tus objetivos.</p>
+    </div>
+  </section>
 
   <script src="app.js"></script>
 </body>
