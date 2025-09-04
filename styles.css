@@ -56,7 +56,7 @@ body{
   min-height:100vh;
   display:flex;
   flex-direction:column;
-  padding:calc(env(safe-area-inset-top)+72px) 16px calc(env(safe-area-inset-bottom)+120px)
+  padding:calc(env(safe-area-inset-top)+96px) 16px calc(env(safe-area-inset-bottom)+120px)
 }
 .card{
   background:var(--card);
@@ -119,26 +119,6 @@ button:active{box-shadow:0 1px 3px rgba(37,99,235,.3)}
   padding:8px 16px calc(env(safe-area-inset-bottom)+8px)
 }
 .footer small{font-size:12px}
-.install-banner{
-  position:fixed;
-  left:50%;
-  bottom:calc(env(safe-area-inset-bottom)+56px);
-  transform:translateX(-50%);
-  background:var(--card);
-  color:var(--text);
-  box-shadow:var(--shadow);
-  border-radius:var(--radius);
-  padding:12px 16px;
-  display:flex;
-  align-items:center;
-  gap:8px;
-}
-.install-banner button{
-  width:auto;
-  margin-top:0;
-  padding:6px 12px;
-  box-shadow:none;
-}
 .modal{
   position:fixed;
   top:0;left:0;right:0;bottom:0;
