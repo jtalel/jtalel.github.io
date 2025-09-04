@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#0f172a" />
+  <meta name="theme-color" content="#60a5fa" />
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Calculadora Tasa">
@@ -60,9 +60,15 @@
     </section>
 
     <footer class="footer">
-      <small>Aplicación diseñada por <strong>@jtalel</strong></small>
+      <small>Aplicación diseñada por <strong><a href="https://ve.linkedin.com/in/jtalel" target="_blank" rel="noopener">@jtalel</a></strong></small>
     </footer>
   </main>
+
+  <div id="installBanner" class="install-banner" hidden>
+    <span id="installMessage">Instala esta aplicación en tu pantalla principal.</span>
+    <button id="btnInstall">Instalar</button>
+    <button id="btnDismiss" aria-label="Cerrar">×</button>
+  </div>
 
   <section id="ayuda" class="modal">
     <div class="modal-content">

@@ -22,4 +22,32 @@
     out.innerHTML=`Con compra a <b>${fmt(re)}</b>, margen operativo: <b>${op.toFixed(2)}%</b><br>${cumple?'✅ CUMPLE':'➡️ NO cumple'} el mínimo requerido de ${o.toFixed(2)}%.`; out.classList.add(cumple?'success':'error');
   });
   if('serviceWorker' in navigator){ window.addEventListener('load', ()=>{ navigator.serviceWorker.register('./service-worker.js'); }); }
+
+  let deferredPrompt;
+  const banner=$('installBanner'), installBtn=$('btnInstall'), dismissBtn=$('btnDismiss'), msg=$('installMessage');
+  const isIos=/iphone|ipad|ipod/i.test(navigator.userAgent);
+  const isStandalone=window.matchMedia('(display-mode: standalone)').matches || navigator.standalone;
+
+  if(isIos && !isStandalone){
+    banner.hidden=false;
+    msg.textContent='Instala esta app: toca compartir y luego "Agregar a inicio".';
+    installBtn.style.display='none';
+  }
+
+  window.addEventListener('beforeinstallprompt', (e)=>{
+    e.preventDefault();
+    deferredPrompt=e;
+    banner.hidden=false;
+  });
+
+  installBtn.addEventListener('click', async ()=>{
+    if(deferredPrompt){
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      deferredPrompt=null;
+    }
+    banner.hidden=true;
+  });
+
+  dismissBtn.addEventListener('click', ()=>{ banner.hidden=true; });
 })();
