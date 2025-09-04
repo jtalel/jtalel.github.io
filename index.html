@@ -17,33 +17,53 @@
     <h1>Calculadora de Tasa Máxima de Compra</h1>
   </header>
 
+  <section class="intro">
+    <p>Herramienta para determinar la tasa m&aacute;xima a la que puedes comprar divisas sin
+      afectar el margen operativo deseado. Introduce el margen bruto, la tasa a la que
+      cobras al cliente y el margen operativo m&iacute;nimo. Por ejemplo, con un margen del
+      40&#37; y una tasa de cobro de 149.44 Bs/USD, obtendr&aacute;s la tasa de compra m&aacute;xima
+      que mantiene tus objetivos.</p>
+  </section>
+
   <main class="container">
     <section class="card">
       <h2>Parámetros</h2>
 
-      <label class="label" for="margen">Margen de ganancia sobre la venta (%)</label>
+      <label class="label" for="margen">Margen de ganancia sobre la venta (%)
+        <span class="info" title="Porcentaje de ganancia que aplicas al precio de venta">ℹ️</span>
+      </label>
       <input id="margen" type="number" inputmode="decimal" placeholder="Ej: 40" value="40" />
 
-      <label class="label" for="cobro">Tasa a la que COBRAS al cliente (Bs/USD)</label>
+      <label class="label" for="cobro">Tasa a la que COBRAS al cliente (Bs/USD)
+        <span class="info" title="Tipo de cambio facturado al cliente en bolívares por dólar">ℹ️</span>
+      </label>
       <input id="cobro" type="number" inputmode="decimal" placeholder="Ej: 149.44" value="149.44" />
 
-      <label class="label" for="operativo">Mínimo % de ganancia OPERATIVA sobre la venta</label>
+      <label class="label" for="operativo">Mínimo % de ganancia OPERATIVA sobre la venta
+        <span class="info" title="Utilidad neta deseada tras costos operativos">ℹ️</span>
+      </label>
       <input id="operativo" type="number" inputmode="decimal" placeholder="Ej: 10" value="10" />
 
       <button id="btnCalcular">Calcular tasa MÁXIMA de COMPRA</button>
-
-      <div id="resultado" class="result muted">—</div>
+      <div class="output">
+        <h3>Resultado</h3>
+        <div id="resultado" class="result muted">—</div>
+      </div>
     </section>
 
     <section class="card">
       <h2>Evaluar una TASA DE COMPRA</h2>
 
-      <label class="label" for="eval">Tasa de COMPRA a evaluar (Bs/USD)</label>
+      <label class="label" for="eval">Tasa de COMPRA a evaluar (Bs/USD)
+        <span class="info" title="Tasa de compra que deseas analizar">ℹ️</span>
+      </label>
       <input id="eval" type="number" inputmode="decimal" placeholder="Ej: 220" />
 
       <button id="btnEvaluar">Evaluar</button>
-
-      <div id="evalSalida" class="result muted">—</div>
+      <div class="output">
+        <h3>Evaluación</h3>
+        <div id="evalSalida" class="result muted">—</div>
+      </div>
     </section>
 
     <footer class="footer">
