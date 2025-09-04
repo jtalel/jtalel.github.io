@@ -22,4 +22,26 @@
     out.innerHTML=`Con compra a <b>${fmt(re)}</b>, margen operativo: <b>${op.toFixed(2)}%</b><br>${cumple?'✅ CUMPLE':'➡️ NO cumple'} el mínimo requerido de ${o.toFixed(2)}%.`; out.classList.add(cumple?'success':'error');
   });
   if('serviceWorker' in navigator){ window.addEventListener('load', ()=>{ navigator.serviceWorker.register('./service-worker.js'); }); }
+  let deferredPrompt;
+  const banner=document.getElementById('installBanner');
+  const installBtn=document.getElementById('installButton');
+  const closeBtn=document.getElementById('closeInstall');
+  const text=document.getElementById('installText');
+  window.addEventListener('beforeinstallprompt', (e)=>{
+    e.preventDefault();
+    deferredPrompt=e;
+    banner.classList.add('show');
+  });
+  installBtn.addEventListener('click', ()=>{
+    if(!deferredPrompt) return;
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.finally(()=>{ deferredPrompt=null; banner.classList.remove('show'); });
+  });
+  closeBtn.addEventListener('click', ()=>banner.classList.remove('show'));
+  const iOS=/iPhone|iPad|iPod/.test(navigator.userAgent);
+  if(iOS && !navigator.standalone){
+    installBtn.style.display='none';
+    text.textContent='Instala esta app: toca Compartir y "Agregar a Inicio"';
+    banner.classList.add('show');
+  }
 })();

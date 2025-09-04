@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#0f172a" />
+  <meta name="theme-color" content="#3b82f6" />
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Calculadora Tasa">
@@ -15,15 +15,8 @@
 <body>
   <header class="app-header">
     <h1>Calculadora de Tasa Máxima de Compra</h1>
+    <a href="#ayuda" class="help-btn" aria-label="Ayuda">?</a>
   </header>
-
-  <section class="intro">
-    <p>Herramienta para determinar la tasa m&aacute;xima a la que puedes comprar divisas sin
-      afectar el margen operativo deseado. Introduce el margen bruto, la tasa a la que
-      cobras al cliente y el margen operativo m&iacute;nimo. Por ejemplo, con un margen del
-      40&#37; y una tasa de cobro de 149.44 Bs/USD, obtendr&aacute;s la tasa de compra m&aacute;xima
-      que mantiene tus objetivos.</p>
-  </section>
 
   <main class="container">
     <section class="card">
@@ -65,11 +58,28 @@
         <div id="evalSalida" class="result muted">—</div>
       </div>
     </section>
-
-    <footer class="footer">
-      <small>Aplicación diseñada por <strong>@jtalel</strong></small>
-    </footer>
   </main>
+
+  <div id="installBanner" class="install-banner" role="dialog" aria-label="Instalar app">
+    <span id="installText">Instala esta app en tu inicio</span>
+    <button id="installButton">Instalar</button>
+    <button id="closeInstall" class="install-close" aria-label="Cerrar">×</button>
+  </div>
+
+  <footer class="footer">
+    <small>Aplicación diseñada por <strong><a href="https://ve.linkedin.com/in/jtalel" target="_blank" rel="noopener">@jtalel</a></strong></small>
+  </footer>
+
+  <section id="ayuda" class="modal">
+    <div class="modal-content">
+      <a href="#" class="close" aria-label="Cerrar">×</a>
+      <p>Herramienta para determinar la tasa m&aacute;xima a la que puedes comprar divisas sin
+        afectar el margen operativo deseado. Introduce el margen bruto, la tasa a la que
+        cobras al cliente y el margen operativo m&iacute;nimo. Por ejemplo, con un margen del
+        40&#37; y una tasa de cobro de 149.44 Bs/USD, obtendr&aacute;s la tasa de compra m&aacute;xima
+        que mantiene tus objetivos.</p>
+    </div>
+  </section>
 
   <script src="app.js"></script>
 </body>
