@@ -41,13 +41,17 @@
   });
 
   installBtn.addEventListener('click', async ()=>{
-    if(deferredPrompt){
-      deferredPrompt.prompt();
-      await deferredPrompt.userChoice;
-      deferredPrompt=null;
-    }
+    if(!deferredPrompt) return;
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    deferredPrompt=null;
     banner.hidden=true;
   });
 
   dismissBtn.addEventListener('click', ()=>{ banner.hidden=true; });
+
+  window.addEventListener('appinstalled', () => {
+    banner.hidden = true;
+    deferredPrompt = null;
+  });
 })();

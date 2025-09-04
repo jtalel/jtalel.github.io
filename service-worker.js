@@ -1,1 +1,19 @@
-const CACHE_NAME='tasa-pwa-v1'; const ASSETS=['./','./index.html','./styles.css','./app.js','./manifest.webmanifest','./assets/icon-192.png','./assets/icon-512.png','./assets/maskable-512.png','./assets/apple-touch-icon-180.png']; self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE_NAME).then(c=>c.addAll(ASSETS)))}); self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.map(k=>k===CACHE_NAME?null:caches.delete(k))))) }); self.addEventListener('fetch',e=>{const req=e.request; e.respondWith(caches.match(req).then(res=>res||fetch(req))) });
+const CACHE_NAME = 'tasa-pwa-v2';
+
+self.addEventListener('install', (event) => {
+  // Activate new service worker immediately
+  self.skipWaiting();
+});
+
+self.addEventListener('activate', (event) => {
+  // Remove any previously cached data
+  event.waitUntil(
+    caches.keys().then(keys => Promise.all(keys.map(key => caches.delete(key))))
+  );
+  self.clients.claim();
+});
+
+self.addEventListener('fetch', (event) => {
+  // Always fetch from network to avoid stale caches
+  event.respondWith(fetch(event.request));
+});
