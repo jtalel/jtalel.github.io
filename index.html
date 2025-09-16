@@ -24,45 +24,79 @@
   </header>
 
   <main class="container">
-    <section class="card">
-      <h2>Parámetros</h2>
+    <div class="tabs" role="tablist">
+      <button id="tab-max" class="tab active" type="button" role="tab" aria-selected="true" aria-controls="panel-max" data-target="panel-max">Tasa máxima</button>
+      <button id="tab-promedio" class="tab" type="button" role="tab" aria-selected="false" aria-controls="panel-promedio" data-target="panel-promedio">Promedio de compra</button>
+    </div>
 
-      <label class="label" for="margen">Margen de ganancia sobre la venta (%)
-        <span class="info" title="Porcentaje de ganancia que aplicas al precio de venta">ℹ️</span>
-      </label>
-      <input id="margen" type="number" inputmode="decimal" placeholder="Ej: 40" />
+    <div class="tab-panels">
+      <div class="tab-panel active" id="panel-max" role="tabpanel" aria-labelledby="tab-max">
+        <section class="card">
+          <h2>Parámetros</h2>
 
-      <label class="label" for="cobro">Tasa a la que COBRAS al cliente (Bs/USD)
-        <span class="info" title="Tipo de cambio facturado al cliente en bolívares por dólar">ℹ️</span>
-      </label>
-      <input id="cobro" type="number" inputmode="decimal" placeholder="Ej: 149.44" />
+          <label class="label" for="margen">Margen de ganancia sobre la venta (%)
+            <span class="info" title="Porcentaje de ganancia que aplicas al precio de venta">ℹ️</span>
+          </label>
+          <input id="margen" type="number" inputmode="decimal" placeholder="Ej: 40" />
 
-      <label class="label" for="operativo">Mínimo % de ganancia OPERATIVA sobre la venta
-        <span class="info" title="Utilidad neta deseada tras costos operativos">ℹ️</span>
-      </label>
-      <input id="operativo" type="number" inputmode="decimal" placeholder="Ej: 10" />
+          <label class="label" for="cobro">Tasa a la que COBRAS al cliente (Bs/USD)
+            <span class="info" title="Tipo de cambio facturado al cliente en bolívares por dólar">ℹ️</span>
+          </label>
+          <input id="cobro" type="number" inputmode="decimal" placeholder="Ej: 149.44" />
 
-      <button id="btnCalcular">Calcular tasa MÁXIMA de COMPRA</button>
-      <div class="output">
-        <h3>Resultado</h3>
-        <div id="resultado" class="result muted">—</div>
+          <label class="label" for="operativo">Mínimo % de ganancia OPERATIVA sobre la venta
+            <span class="info" title="Utilidad neta deseada tras costos operativos">ℹ️</span>
+          </label>
+          <input id="operativo" type="number" inputmode="decimal" placeholder="Ej: 10" />
+
+          <button id="btnCalcular">Calcular tasa MÁXIMA de COMPRA</button>
+          <div class="output">
+            <h3>Resultado</h3>
+            <div id="resultado" class="result muted">—</div>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>Evaluar una TASA DE COMPRA</h2>
+
+          <label class="label" for="eval">Tasa de COMPRA a evaluar (Bs/USD)
+            <span class="info" title="Tasa de compra que deseas analizar">ℹ️</span>
+          </label>
+          <input id="eval" type="number" inputmode="decimal" placeholder="Ej: 220" />
+
+          <button id="btnEvaluar">Evaluar</button>
+          <div class="output">
+            <h3>Evaluación</h3>
+            <div id="evalSalida" class="result muted">—</div>
+          </div>
+        </section>
       </div>
-    </section>
 
-    <section class="card">
-      <h2>Evaluar una TASA DE COMPRA</h2>
+      <div class="tab-panel" id="panel-promedio" role="tabpanel" aria-labelledby="tab-promedio" hidden>
+        <section class="card">
+          <h2>Calcular tasa PROMEDIO de compra</h2>
+          <p class="intro">Introduce los montos y tasas de tus operaciones para conocer la tasa promedio ponderada.</p>
 
-      <label class="label" for="eval">Tasa de COMPRA a evaluar (Bs/USD)
-        <span class="info" title="Tasa de compra que deseas analizar">ℹ️</span>
-      </label>
-      <input id="eval" type="number" inputmode="decimal" placeholder="Ej: 220" />
+          <label class="label" for="montoBcv">Monto comprado a tasa BCV (USD)</label>
+          <input id="montoBcv" type="number" inputmode="decimal" placeholder="Ej: 500" />
 
-      <button id="btnEvaluar">Evaluar</button>
-      <div class="output">
-        <h3>Evaluación</h3>
-        <div id="evalSalida" class="result muted">—</div>
+          <label class="label" for="tasaBcv">Tasa BCV aplicada (Bs/USD)</label>
+          <input id="tasaBcv" type="number" inputmode="decimal" placeholder="Ej: 35.00" />
+
+          <label class="label" for="montoAlt">Monto comprado a tasa alternativa (USD)</label>
+          <input id="montoAlt" type="number" inputmode="decimal" placeholder="Ej: 350" />
+
+          <label class="label" for="tasaAlt">Tasa alternativa aplicada (Bs/USD)</label>
+          <input id="tasaAlt" type="number" inputmode="decimal" placeholder="Ej: 38.20" />
+
+          <button id="btnPromedio">Calcular tasa PROMEDIO</button>
+          <div class="output">
+            <h3>Resultado</h3>
+            <div id="promedioResultado" class="result muted">—</div>
+          </div>
+        </section>
       </div>
-    </section>
+    </div>
 
     <footer class="footer">
       <small>Aplicación diseñada por <strong><a href="https://ve.linkedin.com/in/jtalel" target="_blank" rel="noopener">@jtalel</a></strong></small>
