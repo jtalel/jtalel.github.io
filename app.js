@@ -1,6 +1,7 @@
 (function(){
   const $ = (id)=>document.getElementById(id);
   const fmt = (n)=>Number(n).toLocaleString('es-VE',{minimumFractionDigits:4, maximumFractionDigits:4});
+  const fmt2 = (n)=>Number(n).toLocaleString('es-VE',{minimumFractionDigits:2, maximumFractionDigits:2});
   function parseNum(v){ if(v==null) return NaN; const s=String(v).trim().replace(',', '.').replace(/[^\d.\-]/g,''); return s?Number(s):NaN; }
   function calcRCompraMax(m_pct, r_cobro, o_pct){ const m=m_pct/100, o=o_pct/100; const denom=1-m+o; if(denom<=0) return NaN; return r_cobro/denom; }
   function calcOpMarginPct(m_pct, r_cobro, r_compra){ const m=m_pct/100; return (r_cobro/r_compra - (1-m)) * 100; }
@@ -21,5 +22,59 @@
     const op=calcOpMarginPct(m,r,re); const cumple=(op+1e-9>=o);
     out.innerHTML=`Con compra a <b>${fmt(re)}</b>, margen operativo: <b>${op.toFixed(2)}%</b><br>${cumple?'✅ CUMPLE':'➡️ NO cumple'} el mínimo requerido de ${o.toFixed(2)}%.`; out.classList.add(cumple?'success':'error');
   });
+  const tabButtons = document.querySelectorAll('.tab');
+  const panels = document.querySelectorAll('.tab-panel');
+  tabButtons.forEach((btn)=>{
+    btn.addEventListener('click', ()=>{
+      const target = btn.dataset.target;
+      tabButtons.forEach((b)=>{
+        const isActive = b === btn;
+        b.classList.toggle('active', isActive);
+        b.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
+      panels.forEach((panel)=>{
+        const show = panel.id === target;
+        panel.classList.toggle('active', show);
+        if(show){
+          panel.removeAttribute('hidden');
+        }else{
+          panel.setAttribute('hidden', '');
+        }
+      });
+    });
+  });
+
+  $('btnPromedio').addEventListener('click', ()=>{
+    const montoBcv=parseNum($('montoBcv').value), tasaBcv=parseNum($('tasaBcv').value);
+    const montoAlt=parseNum($('montoAlt').value), tasaAlt=parseNum($('tasaAlt').value);
+    const res=$('promedioResultado');
+    res.classList.remove('muted','success','error');
+    if(!isFinite(montoBcv)||!isFinite(tasaBcv)||!isFinite(montoAlt)||!isFinite(tasaAlt)){
+      res.innerHTML='⚠️ Ingresa montos y tasas válidos para ambas operaciones.';
+      res.classList.add('error');
+      return;
+    }
+    if(montoBcv<0||montoAlt<0){
+      res.innerHTML='⚠️ Los montos deben ser mayores o iguales a cero.';
+      res.classList.add('error');
+      return;
+    }
+    if(tasaBcv<=0||tasaAlt<=0){
+      res.innerHTML='⚠️ Las tasas deben ser mayores a cero.';
+      res.classList.add('error');
+      return;
+    }
+    const totalUsd=montoBcv+montoAlt;
+    if(!(totalUsd>0)){
+      res.innerHTML='⚠️ Debes registrar al menos una compra en dólares.';
+      res.classList.add('error');
+      return;
+    }
+    const totalBs=montoBcv*tasaBcv+montoAlt*tasaAlt;
+    const promedio=totalBs/totalUsd;
+    res.innerHTML=`Total comprado: <b>${fmt2(totalUsd)} USD</b><br>Total pagado: <b>${fmt2(totalBs)} Bs</b><br>Tasa promedio ponderada: <b>${fmt(promedio)} Bs/USD</b>`;
+    res.classList.add('success');
+  });
+
   if('serviceWorker' in navigator){ window.addEventListener('load', ()=>{ navigator.serviceWorker.register('./service-worker.js'); }); }
 })();
