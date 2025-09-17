@@ -56,7 +56,8 @@ body{
   min-height:100vh;
   display:flex;
   flex-direction:column;
-  padding:calc(env(safe-area-inset-top)+96px) 16px calc(env(safe-area-inset-bottom)+120px)
+  padding:96px 16px 120px;
+  padding:calc(env(safe-area-inset-top) + 96px) 16px calc(env(safe-area-inset-bottom) + 120px);
 }
 .tabs{
   display:flex;
