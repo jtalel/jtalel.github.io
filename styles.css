@@ -19,6 +19,33 @@ body{
   display:flex;
   flex-direction:column
 }
+body.locked{overflow:hidden}
+.access-gate{
+  position:fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:32px 16px;
+  background:linear-gradient(135deg,rgba(96,165,250,.9),rgba(59,130,246,.85));
+  backdrop-filter:blur(2px);
+  z-index:1000
+}
+.access-gate[hidden]{display:none}
+.gate-card{
+  width:100%;
+  max-width:360px;
+  background:var(--card);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:24px;
+  text-align:center
+}
+.gate-card h2{margin:0 0 12px;font-size:20px}
+.gate-intro{margin:0 0 16px;color:var(--muted);font-size:14px}
+.access-message{margin-top:16px;font-size:14px;min-height:20px}
+.access-message.success{color:var(--success)}
+.access-message.error{color:var(--error)}
 .app-header{
   position:fixed;
   top:0;left:0;right:0;

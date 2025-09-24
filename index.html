@@ -18,12 +18,24 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <div id="accessGate" class="access-gate" role="dialog" aria-modal="true" aria-labelledby="accessTitle">
+    <div class="gate-card">
+      <h2 id="accessTitle">Acceso restringido</h2>
+      <p class="gate-intro">Introduce la clave secreta para continuar. Las visitas quedan registradas para control interno.</p>
+      <form id="accessForm" autocomplete="off">
+        <label class="label" for="accessKey">Clave secreta</label>
+        <input id="accessKey" name="accessKey" type="password" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" required />
+        <button type="submit">Ingresar</button>
+      </form>
+      <p id="accessMessage" class="access-message" aria-live="polite"></p>
+    </div>
+  </div>
   <header class="app-header">
     <h1>Calculadora de Tasa Máxima de Compra</h1>
     <a href="#ayuda" class="help-btn" aria-label="Ayuda">?</a>
   </header>
 
-  <main class="container">
+  <main id="appMain" class="container" hidden aria-hidden="true">
     <div class="tabs" role="tablist">
       <button id="tab-max" class="tab active" type="button" role="tab" aria-selected="true" aria-controls="panel-max" data-target="panel-max">Tasa máxima</button>
       <button id="tab-promedio" class="tab" type="button" role="tab" aria-selected="false" aria-controls="panel-promedio" data-target="panel-promedio">Promedio de compra</button>
